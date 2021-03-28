@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 # needed to install tzdata in disco
 ENV DEBIAN_FRONTEND=noninteractive
@@ -34,7 +34,7 @@ RUN cmake -Dclient=OFF -DCMAKE_BUILD_TYPE=Release -Dgrpc=ON ..
 RUN make -j $(nproc)
 
 # Clean distribution stage
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 RUN adduser murmur
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -42,8 +42,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	libavahi-compat-libdnssd1 \
 	libcap2 \
 	libgrpc++1 \
-	'^libgrpc[0-9]+$' \
-	'^libprotobuf[0-9]+$' \
+	libgrpc6 \
+	libprotobuf17 \
 	libqt5core5a \
 	libqt5dbus5 \
 	libqt5network5 \
