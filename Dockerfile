@@ -6,25 +6,25 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install --no-install-recommends -y \
 	build-essential \
 	cmake \
-	pkg-config \
-	qt5-default \
-	libboost-dev \
 	libasound2-dev \
-	libssl-dev \
-	libspeechd-dev \
-	libzeroc-ice-dev \
-	libpulse-dev \
+	libavahi-compat-libdnssd-dev \
+	libboost-dev \
+	libbz2-dev \
 	libcap-dev \
+	libgrpc++-dev \
+	libogg-dev \
 	libprotobuf-dev \
+	libprotoc-dev \
+	libpulse-dev \
+	libsndfile1-dev \
+	libspeechd-dev \
+	libssl-dev \
+	libxi-dev \
+	libzeroc-ice-dev \
+	pkg-config \
 	protobuf-compiler \
 	protobuf-compiler-grpc \
-	libprotoc-dev \
-	libogg-dev \
-	libavahi-compat-libdnssd-dev \
-	libsndfile1-dev \
-	libgrpc++-dev \
-	libxi-dev \
-	libbz2-dev \
+	qt5-default \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY . /root/mumble
@@ -38,19 +38,19 @@ FROM ubuntu:latest
 
 RUN adduser murmur
 RUN apt-get update && apt-get install --no-install-recommends -y \
-	libcap2 \
-	libzeroc-ice3.7 \
-	'^libprotobuf[0-9]+$' \
-	'^libgrpc[0-9]+$' \
-	libgrpc++1 \
+	ca-certificates \
 	libavahi-compat-libdnssd1 \
+	libcap2 \
+	libgrpc++1 \
+	'^libgrpc[0-9]+$' \
+	'^libprotobuf[0-9]+$' \
 	libqt5core5a \
+	libqt5dbus5 \
 	libqt5network5 \
 	libqt5sql5 \
 	libqt5sql5-sqlite \
 	libqt5xml5 \
-	libqt5dbus5 \
-	ca-certificates \
+	libzeroc-ice3.7 \
 	&& rm -rf /var/lib/apt/lists/* 
 
 COPY --from=0 /root/mumble/build/murmurd /usr/bin/murmurd
