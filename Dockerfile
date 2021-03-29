@@ -5,7 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
 	build-essential \
+	ca-certificates \
 	cmake \
+	git \
 	libasound2-dev \
 	libavahi-compat-libdnssd-dev \
 	libboost-dev \
@@ -27,9 +29,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	qt5-default \
 	&& rm -rf /var/lib/apt/lists/*
 
-COPY . /root/mumble
-WORKDIR /root/mumble/build
+RUN git clone -b 1.4.0-development-snapshot-003 https://github.com/mumble-voip/mumble.git /root/mumble/
 
+WORKDIR /root/mumble/build
 RUN cmake -Dclient=OFF -DCMAKE_BUILD_TYPE=Release -Dgrpc=ON ..
 RUN make -j $(nproc)
 
