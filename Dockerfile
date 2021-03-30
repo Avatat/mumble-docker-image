@@ -8,20 +8,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	ca-certificates \
 	cmake \
 	git \
-	libasound2-dev \
 	libavahi-compat-libdnssd-dev \
 	libboost-dev \
-	libbz2-dev \
 	libcap-dev \
 	libgrpc++-dev \
-	libogg-dev \
 	libprotobuf-dev \
 	libprotoc-dev \
-	libpulse-dev \
-	libsndfile1-dev \
-	libspeechd-dev \
 	libssl-dev \
-	libxi-dev \
 	libzeroc-ice-dev \
 	pkg-config \
 	protobuf-compiler \
